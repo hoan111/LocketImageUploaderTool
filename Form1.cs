@@ -25,6 +25,7 @@ namespace LocketImageUploader
 
         private static FirebaseAuthClient FirebaseAuthClient = null;
         private static UserCredential UserCredential = null;
+        private static string token = "";
         public Form1()
         {
             InitializeComponent();
@@ -45,8 +46,6 @@ namespace LocketImageUploader
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; 
             }
-            var imageUrl = "";
-            var videoUrl = "";
             try
             {
                 var authConfig = new FirebaseAuthConfig
@@ -62,55 +61,9 @@ namespace LocketImageUploader
                 FirebaseAuthClient = new FirebaseAuthClient(authConfig);
                 UserCredential = await FirebaseAuthClient.SignInWithEmailAndPasswordAsync(username, password);
                 var user = UserCredential.User;
-                var token = await user.GetIdTokenAsync();
-
-                using (var stream = File.Open(TxtBoxFilePath.Text, FileMode.Open))
-                {
-
-                    var task = new FirebaseStorage("locket-img", new FirebaseStorageOptions
-                    {
-                        AuthTokenAsyncFactory = () => Task.FromResult(token), //Token = IdToken trên locket
-                        ThrowOnCancel = true,
-
-                    })
-                    .Child("users")
-                    .Child(user.Uid) //User ID trên locket
-                    .Child("moments")
-                    .Child("thumbnails")
-                    .Child($"{System.Guid.NewGuid().ToString().Replace("-", "").Substring(0, 21)}.webp")
-                    .PutAsync(stream);
-
-                    //task.Progress.ProgressChanged += (s, e) => UploadProgessBar.Value = e.Percentage;
-                    imageUrl = await task;
-
-                    //TODO: call locket function
-                    string FirebaseFunctions = "api.locketcamera.com";
-                    string FirebaseCallFunction = "postMomentV2";
-                    ChangeButtonStateAfterLogin();
-                }
-
-                bool uploadVideo = CheckBoxUploadVideo.Checked;
-                if(uploadVideo)
-                {
-                    using (var streamVideo = File.Open(TxtBoxFilePath.Text, FileMode.Open))
-                    {
-                        var task = new FirebaseStorage("locket-video", new FirebaseStorageOptions
-                        {
-                            AuthTokenAsyncFactory = () => Task.FromResult(token), //Token = IdToken trên locket
-                            ThrowOnCancel = true,
-
-                        })
-                        .Child("users")
-                        .Child(user.Uid) //User ID trên locket
-                        .Child("moments")
-                        .Child("videos")
-                        .Child($"{System.Guid.NewGuid().ToString().Replace("-", "").Substring(0, 21)}.mp4")
-                        .PutAsync(streamVideo);
-
-                        //task.Progress.ProgressChanged += (s, e) => UploadProgessBar.Value = e.Percentage;
-                        videoUrl = await task;
-                    }
-                }
+                token = await user.GetIdTokenAsync();
+                LinkTextBox.Text = token;
+                ChangeButtonStateAfterLogin();
             } catch(Exception e)
             {
                 MessageBox.Show(e.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -123,20 +76,21 @@ namespace LocketImageUploader
             {
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LinkTextBox.Text = $"ImageUrl: {imageUrl} ------ videoUrl: {videoUrl}";
         }
         private void ChangeButtonStateAfterLogin()
         {
             LoginBtn.Enabled = false;
             LogoutBtn.Enabled = true;
-            UserNameTextBox.Text = string.Empty;
-            PasswordTextBox.Text = string.Empty;
+            //UserNameTextBox.Text = string.Empty;
+            //PasswordTextBox.Text = string.Empty;
+            btnUpload.Enabled = true;
         }
         private void ChangeButtonStateAfterLogout()
         {
             LoginBtn.Enabled = true;
             LogoutBtn.Enabled = false;
             LinkTextBox.Text = string.Empty;
+            btnUpload.Enabled = false;
         }
         private void LogoutBtn_Click(object sender, EventArgs e)
         {
@@ -183,6 +137,68 @@ namespace LocketImageUploader
                 return;
             }
             TxtBoxFilePath.Text = openFileDialog.FileName;
+        }
+
+        private async void btnUpload_Click(object sender, EventArgs e)
+        {
+            bool uploadVideo = CheckBoxUploadVideo.Checked;
+            var imageUrl = "";
+            var videoUrl = "";
+            var user = UserCredential.User;
+            try
+            {
+                if (!uploadVideo)
+                {
+                    using (var stream = File.Open(TxtBoxFilePath.Text, FileMode.Open))
+                    {
+
+                        var task = new FirebaseStorage("locket-img", new FirebaseStorageOptions
+                        {
+                            AuthTokenAsyncFactory = () => Task.FromResult(token), //Token = IdToken trên locket
+                            ThrowOnCancel = true,
+
+                        })
+                        .Child("users")
+                        .Child(user.Uid) //User ID trên locket
+                        .Child("moments")
+                        .Child("thumbnails")
+                        .Child($"{System.Guid.NewGuid().ToString().Replace("-", "").Substring(0, 21)}.webp")
+                        .PutAsync(stream);
+
+                        task.Progress.ProgressChanged += (s, process) => UploadProgessBar.Value = process.Percentage;
+                        imageUrl = await task;
+
+                        LinkTextBox.Text = $"ImageUrl: {imageUrl}";
+                    }
+                }
+
+                if (uploadVideo)
+                {
+                    using (var streamVideo = File.Open(TxtBoxFilePath.Text, FileMode.Open))
+                    {
+                        var task = new FirebaseStorage("locket-video", new FirebaseStorageOptions
+                        {
+                            AuthTokenAsyncFactory = () => Task.FromResult(token), //Token = IdToken trên locket
+                            ThrowOnCancel = true,
+
+                        })
+                        .Child("users")
+                        .Child(user.Uid) //User ID trên locket
+                        .Child("moments")
+                        .Child("videos")
+                        .Child($"{System.Guid.NewGuid().ToString().Replace("-", "").Substring(0, 21)}.mp4")
+                        .PutAsync(streamVideo);
+
+                        task.Progress.ProgressChanged += (s, process) => UploadProgessBar.Value = process.Percentage;
+                        videoUrl = await task;
+                        LinkTextBox.Text = $"videoUrl: {videoUrl}";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

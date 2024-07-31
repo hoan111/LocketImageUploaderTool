@@ -47,6 +47,7 @@ namespace LocketImageUploader
             this.BtnChooseFile = new System.Windows.Forms.Button();
             this.TxtBoxFilePath = new System.Windows.Forms.TextBox();
             this.CheckBoxUploadVideo = new System.Windows.Forms.CheckBox();
+            this.btnUpload = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -105,14 +106,14 @@ namespace LocketImageUploader
             // 
             // UploadProgessBar
             // 
-            this.UploadProgessBar.Location = new System.Drawing.Point(11, 112);
+            this.UploadProgessBar.Location = new System.Drawing.Point(12, 131);
             this.UploadProgessBar.Name = "UploadProgessBar";
             this.UploadProgessBar.Size = new System.Drawing.Size(529, 23);
             this.UploadProgessBar.TabIndex = 7;
             // 
             // LinkTextBox
             // 
-            this.LinkTextBox.Location = new System.Drawing.Point(12, 152);
+            this.LinkTextBox.Location = new System.Drawing.Point(13, 171);
             this.LinkTextBox.Multiline = true;
             this.LinkTextBox.Name = "LinkTextBox";
             this.LinkTextBox.ReadOnly = true;
@@ -147,11 +148,23 @@ namespace LocketImageUploader
             this.CheckBoxUploadVideo.Text = "Upload video";
             this.CheckBoxUploadVideo.UseVisualStyleBackColor = true;
             // 
+            // btnUpload
+            // 
+            this.btnUpload.Enabled = false;
+            this.btnUpload.Location = new System.Drawing.Point(16, 102);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(75, 23);
+            this.btnUpload.TabIndex = 12;
+            this.btnUpload.Text = "Upload";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 313);
+            this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.CheckBoxUploadVideo);
             this.Controls.Add(this.TxtBoxFilePath);
             this.Controls.Add(this.BtnChooseFile);
@@ -183,6 +196,7 @@ namespace LocketImageUploader
         private System.Windows.Forms.Button BtnChooseFile;
         private System.Windows.Forms.TextBox TxtBoxFilePath;
         private System.Windows.Forms.CheckBox CheckBoxUploadVideo;
+        private System.Windows.Forms.Button btnUpload;
     }
 }
 

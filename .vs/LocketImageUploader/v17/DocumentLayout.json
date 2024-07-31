@@ -7,15 +7,15 @@
       "RelativeMoniker": "D:0:0:{6F276003-D5DD-44F5-9A51-CBCC509C4F8A}|LocketImageUploader.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|LocketImageUploader||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{6F276003-D5DD-44F5-9A51-CBCC509C4F8A}|LocketImageUploader.csproj|C:\\Users\\Admin\\source\\repos\\LocketImageUploader\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F276003-D5DD-44F5-9A51-CBCC509C4F8A}|LocketImageUploader.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6F276003-D5DD-44F5-9A51-CBCC509C4F8A}|LocketImageUploader.csproj|C:\\Users\\Admin\\source\\repos\\LocketImageUploader\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{6F276003-D5DD-44F5-9A51-CBCC509C4F8A}|LocketImageUploader.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F276003-D5DD-44F5-9A51-CBCC509C4F8A}|LocketImageUploader.csproj|c:\\users\\admin\\source\\repos\\locketimageuploader\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F276003-D5DD-44F5-9A51-CBCC509C4F8A}|LocketImageUploader.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|LocketImageUploader||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6F276003-D5DD-44F5-9A51-CBCC509C4F8A}|LocketImageUploader.csproj|c:\\users\\admin\\source\\repos\\locketimageuploader\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|5e9a8ac2-4f34-4521-858f-4c248ba31532"
@@ -44,7 +44,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\LocketImageUploader\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -57,7 +57,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "LocketImageUploader",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\LocketImageUploader\\LocketImageUploader.csproj",
               "RelativeDocumentMoniker": "LocketImageUploader.csproj",
@@ -87,7 +87,7 @@
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\Admin\\source\\repos\\LocketImageUploader\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAAE8AAAAAAAAAAAAcwGUAAAAaAAAA",
+              "ViewState": "AQIAAHUAAAAAAAAAAAAIwEEAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-21T02:16:46.968Z",
               "EditorCaption": ""

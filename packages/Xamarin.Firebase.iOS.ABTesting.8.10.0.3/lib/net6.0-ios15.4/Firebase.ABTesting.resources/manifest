@@ -1,0 +1,13 @@
+﻿<BindingAssembly>
+	<NativeReference Name="FirebaseABTesting.xcframework">
+		<_Id>FirebaseABTesting</_Id>
+		<ForceLoad>True</ForceLoad>
+		<Frameworks>Security SystemConfiguration</Frameworks>
+		<IsCxx></IsCxx>
+		<Kind>Framework</Kind>
+		<LinkerFlags>-ObjC -lz</LinkerFlags>
+		<NeedsGccExceptionHandling></NeedsGccExceptionHandling>
+		<SmartLink>True</SmartLink>
+		<WeakFrameworks></WeakFrameworks>
+	</NativeReference>
+</BindingAssembly>
